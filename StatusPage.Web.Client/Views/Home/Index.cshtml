@@ -1,0 +1,61 @@
+﻿@model StatusPage.Data.Views.StatusPageView
+@{
+    //Layout = null;
+    ViewBag.Title = "Home";
+}
+@helper RenderLabel(int status)
+{
+switch ((StatusPage.Data.Models.StateEnum)status)
+{
+    case StatusPage.Data.Models.StateEnum.Warning:
+            @:<span class="label label-warning pull-right">Issue</span>
+            break;
+        case StatusPage.Data.Models.StateEnum.Error:
+            @:<span class="label label-danger pull-right">Down</span>
+            break;
+        default:
+            @:<span class="label label-success pull-right">Operational</span>
+            break;
+    }
+}
+<div>
+    <h1>Status</h1>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <ul class="list-group">
+        @if (Model.AllOperational)
+        {
+            <li class="list-group-item">All operational</li>
+        }
+        else {
+            <li class="list-group-item">Issues exist</li>
+        }
+        </ul>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-lg-12">
+        <ul class="list-group">
+            @foreach (var p in Model.Systems)
+        {
+                <li class="list-group-item"><i class="glyphicon glyphicon-record"></i> @p.Title @RenderLabel(p.State)</li>
+            }
+        </ul>
+    </div>
+</div>
+<hr />
+<div>
+    <h3>Past Incidents</h3>
+</div>
+@foreach (var i in Model.PastIncidents)
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <h4>@i.EventDate</h4>
+            <h5>@i.Title</h5>
+            <div>@i.Description</div>
+        </div>
+    </div>
+}
