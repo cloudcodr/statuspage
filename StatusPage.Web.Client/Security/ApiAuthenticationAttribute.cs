@@ -11,6 +11,9 @@ using System.Web.Http.Filters;
 
 namespace StatusPage.Web.Security
 {
+    /// <summary>
+    /// Enables authorization of the WebAPI.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
     public class ApiAuthenticationAttribute : Attribute, System.Web.Http.Filters.IAuthenticationFilter
     {

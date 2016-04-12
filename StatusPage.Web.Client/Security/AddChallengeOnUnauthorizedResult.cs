@@ -11,8 +11,16 @@ using System.Web.Http;
 
 namespace StatusPage.Web.Security
 {
+    /// <summary>
+    /// Returns the challenge result to the HTTP header, when not authoritized.
+    /// </summary>
     public class AddChallengeOnUnauthorizedResult : IHttpActionResult
     {
+        /// <summary>
+        /// Returns a new instance of the AddChallengeOnUnauthorizedResult class, using the current authentication headers.
+        /// </summary>
+        /// <param name="challenge">Current authentication headers.</param>
+        /// <param name="innerResult"></param>
         public AddChallengeOnUnauthorizedResult(AuthenticationHeaderValue challenge, IHttpActionResult innerResult)
         {
             Challenge = challenge;

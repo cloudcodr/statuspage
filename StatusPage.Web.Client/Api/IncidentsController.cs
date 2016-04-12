@@ -9,9 +9,12 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using StatusPage.Data.Models;
+using StatusPage.Web.Security;
 
 namespace StatusPage.Web.Api
 {
+    [ApiAuthentication]
+    [Authorize]
     public class IncidentsController : ApiController
     {
         private StatusPageContext db = new StatusPageContext(true);
